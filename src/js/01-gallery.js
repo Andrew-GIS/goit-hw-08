@@ -31,5 +31,6 @@ function onGalleryItemClick(event) {
 			captionsData: "alt",
 			captionDelay: 250,	
 		});
+		
 	}
 }
