@@ -16,14 +16,14 @@ function valueEmail() {
 
 function valueMassage() {
 	return {
-		email: form.message.value
+		message: form.message.value
 	}
 }
 
 function onFormInputListener() {
 	const email = valueEmail();
 	const message = valueMassage();
-	localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify( email, message ));
+	localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify({ email, message }));
 
 	// console.log('email IN INPUT :>> ', email);
 	// console.log('message IN INPUT :>> ', message);
@@ -32,7 +32,7 @@ function onFormInputListener() {
 function onFormSubmitListener(event) {
 	event.preventDefault();
 	
-	if (form.elements.email.value || form.elements.message.value) {
+	if (form.elements.email.value && form.elements.message.value) {
 		const email = valueEmail();
 		const message = valueMassage();
 		console.log('email SUBMITED:>> ', email);
@@ -46,7 +46,7 @@ function onFormShowResult() {
 	const savedMessage = localStorage.getItem(LOCALSTORAGE_KEY);
 	if (savedMessage) {
 		const inputFill = JSON.parse(savedMessage);
-		form.email.value = inputFill.email;
-		form.message.value = inputFill.message;
+		form.elements.email.value = inputFill.email;
+		form.elements.message.value = inputFill.message;
 	}
 }
